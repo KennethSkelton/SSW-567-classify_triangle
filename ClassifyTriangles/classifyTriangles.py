@@ -11,25 +11,36 @@ import math
 
 def classify_triangle(a, b, c):
 
+    #normalize parameter inputs
     sides = [a,b,c]
     hypotenuse = max(sides)
     sides.remove(hypotenuse)
     leg1 = sides[0]
     leg2 = sides[1]
 
+    #initialize result list
     results = []
 
+    #test not a triangle
     if(leg1+leg2 <= hypotenuse or (leg1<=0 or leg2<=0 or hypotenuse<=0)):
         return str(results)
+
+    #test right triangle
     if(leg1*leg1 + leg2*leg2 == hypotenuse*hypotenuse):
         results.append("right")
 
+    #test scalene traingle
     if(leg1 != leg2 and leg2 != hypotenuse and hypotenuse != leg1):
         results.append("scalene")
+    #test equilateral triangle
     elif(leg1==leg2 and leg2==hypotenuse and hypotenuse==leg1):
         results.append("equilateral")
+
+    #if not equilateral or scalene it must be isosceles
     else:
         results.append("isosceles")
+
+    #return results
     return str(results)
 
 def runclassify_triangle(a,b,c):
